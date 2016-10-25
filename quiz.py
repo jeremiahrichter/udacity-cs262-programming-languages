@@ -1,16 +1,21 @@
 # FSM Interpretation
 
-# Define edges and accepting to encode r"[a-b][c-d]?". Name your start state 1.
+# Provide s1 and s2 that are both accepted, but s1 != s2.
 
-edges = {
-    (1, 'a'): 2,
-    (1, 'b'): 2,
-    (2, ''): 3,
-    (2, 'c'): 3,
-    (2, 'd'): 3,
-}
+s1 = ""
 
-accepting = [2, 3]
+s2 = ""
+
+
+edges = {(1,'a') : 2,
+         (1,'b') : 3,
+         (2,'c') : 4,
+         (3,'d') : 5,
+         (5,'c') : 2,
+         (5,'f') : 6,
+         (5,'g') : 1}
+
+accepting = [6]
 
 
 def fsmsim(string, current, edges, accepting):
@@ -26,14 +31,11 @@ def fsmsim(string, current, edges, accepting):
             return False
 
 
-print fsmsim("a", 1, edges, accepting)
+#print fsmsim(s1,1,edges,accepting)
 # >>> True
 
-print fsmsim("b", 1, edges, accepting)
+#print fsmsim(s2,1,edges,accepting)
 # >>> True
 
-print fsmsim("ad", 1, edges, accepting)
+#print s1 != s2
 # >>> True
-
-print fsmsim("e", 1, edges, accepting)
-# >>> False
