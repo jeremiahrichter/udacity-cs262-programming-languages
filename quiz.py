@@ -1,39 +1,32 @@
-# FSM Interpretation
+# Cumulative Recap!
 
-# Provide s1 and s2 that are both accepted, but s1 != s2.
+# Suppose we want to recognize phone numbers with or without hyphens. The
+# regular expression you give should work for any number of groups of any (non-
+# empty) size, separated by 1 hyphen. Each group is [0-9]+.
 
-s1 = "bdf"
+# Hint: Accept "5" but not "-6"
 
-s2 = "bdgbdf"
+import re
 
-edges = {(1, 'a'): 2,
-         (1, 'b'): 3,
-         (2, 'c'): 4,
-         (3, 'd'): 5,
-         (5, 'c'): 2,
-         (5, 'f'): 6,
-         (5, 'g'): 1}
+regexp = r""
 
-accepting = [6]
+# regexp matches:
+
+#print re.findall(regexp,"123-4567") == ["123-4567"]
+#>>> True
+
+#print re.findall(regexp,"1234567") == ["1234567"]
+#>>> True
+
+#print re.findall(regexp,"08-78-88-88-88") == ["08-78-88-88-88"]
+#>>> True
+
+#print re.findall(regexp,"0878888888") == ["0878888888"]
+#>>> True
+
+# regexp does not match:
+
+#print re.findall(regexp,"-6") != ["-6"]
+#>>> True
 
 
-def fsmsim(string, current, edges, accepting):
-    if string == "":
-        return current in accepting
-    else:
-        letter = string[0]
-        if (current, letter) in edges:
-            destination = edges[(current, letter)]
-            remaining_string = string[1:]
-            return fsmsim(remaining_string, destination, edges, accepting)
-        else:
-            return False
-
-print fsmsim(s1, 1, edges, accepting)
-# >>> True
-
-print fsmsim(s2, 1, edges, accepting)
-# >>> True
-
-print s1 != s2
-# >>> True
