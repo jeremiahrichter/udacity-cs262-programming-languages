@@ -1,31 +1,23 @@
-# RE Challenges
+# Tricky REs with ^ and \
 
-# Assign to the variable regexp a Python regular expression that matches single-
-# argument mathematical functions.
+# Assign to regexp a regular expression for double-quoted string literals that
+# allows for escaped double quotes.
 
-# The function name is a lowercase word (a-z), the function argument must be a
-# number (0-9), and there may optionally be spaces before and/or after the
-# argument.
-
-# Hint: You may need to escape the ( and ).
+# Hint: Escape " and \
+# Hint: (?: (?: ) )
 
 import re
 
-regexp = r"[a-z]+\([ ]*[0-9]+[ ]*\)"
+regexp = r''
 
 # regexp matches:
 
-print re.findall(regexp, "cos(0)") == ["cos(0)"]
-# >>> True
-
-print re.findall(regexp, "sqrt(   2     )") == ["sqrt(   2     )"]
-# >>> True
+#print re.findall(regexp,'"I say, \\"hello.\\""') == ['"I say, \\"hello.\\""']
+#>>> True
 
 
 # regexp does not match:
 
-print re.findall(regexp, "cos     (0)") != ["cos     (0)"]
-# >>> True
+#print re.findall(regexp,'"\\"') != ['"\\"']
+#>>> True
 
-print re.findall(regexp, "sqrt(x)") != ["sqrt(x)"]
-# >>> True
