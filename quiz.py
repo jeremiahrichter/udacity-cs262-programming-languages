@@ -11,23 +11,21 @@
 
 import re
 
-regexp = r""
+regexp = r"[a-z]+\([ ]*[0-9]+[ ]*\)"
 
 # regexp matches:
 
-# print re.findall(regexp,"cos(0)") == ["cos(0)"]
+print re.findall(regexp, "cos(0)") == ["cos(0)"]
 # >>> True
 
-# print re.findall(regexp,"sqrt(   2     )") == ["sqrt(   2     )"]
+print re.findall(regexp, "sqrt(   2     )") == ["sqrt(   2     )"]
 # >>> True
 
 
 # regexp does not match:
 
-# print re.findall(regexp,"cos     (0)") != ["cos     (0)"]
+print re.findall(regexp, "cos     (0)") != ["cos     (0)"]
 # >>> True
 
-# print re.findall(regexp,"sqrt(x)") != ["sqrt(x)"]
+print re.findall(regexp, "sqrt(x)") != ["sqrt(x)"]
 # >>> True
-
-
