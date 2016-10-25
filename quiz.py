@@ -2,9 +2,15 @@
 
 # Define edges and accepting to encode r"[a-b][c-d]?". Name your start state 1.
 
-edges = {}
+edges = {
+    (1, 'a'): 2,
+    (1, 'b'): 2,
+    (2, ''): 3,
+    (2, 'c'): 3,
+    (2, 'd'): 3,
+}
 
-accepting = []
+accepting = [2, 3]
 
 
 def fsmsim(string, current, edges, accepting):
@@ -20,14 +26,14 @@ def fsmsim(string, current, edges, accepting):
             return False
 
 
-#print fsmsim("a",1,edges,accepting)
+print fsmsim("a", 1, edges, accepting)
 # >>> True
 
-#print fsmsim("b",1,edges,accepting)
+print fsmsim("b", 1, edges, accepting)
 # >>> True
 
-#print fsmsim("ad",1,edges,accepting)
+print fsmsim("ad", 1, edges, accepting)
 # >>> True
 
-#print fsmsim("e",1,edges,accepting)
+print fsmsim("e", 1, edges, accepting)
 # >>> False
