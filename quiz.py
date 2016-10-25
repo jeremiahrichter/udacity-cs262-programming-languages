@@ -1,11 +1,10 @@
-# FSM Simulation
+# FSM Interpretation
 
-edges = {(1, 'a'): 2,
-         (2, 'a'): 2,
-         (2, '1'): 3,
-         (3, '1'): 3}
+# Define edges and accepting to encode r"q*". Name your start state 1.
 
-accepting = [3]
+edges = {}
+
+accepting = []
 
 
 def fsmsim(string, current, edges, accepting):
@@ -13,12 +12,22 @@ def fsmsim(string, current, edges, accepting):
         return current in accepting
     else:
         letter = string[0]
-        nextState = edges.get((current, letter), False)
-        if nextState is not False:
-            return fsmsim(string[1:], nextState, edges, accepting)
+        if (current, letter) in edges:
+            destination = edges[(current, letter)]
+            remaining_string = string[1:]
+            return fsmsim(remaining_string, destination, edges, accepting)
         else:
             return False
 
 
-print fsmsim("aaa111", 1, edges, accepting)
+print fsmsim("", 1, edges, accepting)
 # >>> True
+
+print fsmsim("q", 1, edges, accepting)
+# >>> True
+
+print fsmsim("qq", 1, edges, accepting)
+# >>> True
+
+print fsmsim("p", 1, edges, accepting)
+# >>> False
