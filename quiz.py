@@ -8,16 +8,15 @@
 
 import re
 
-regexp = r''
+regexp = r'^\"(?:[^\\]|(?:\\.))*\"$'
 
 # regexp matches:
 
-#print re.findall(regexp,'"I say, \\"hello.\\""') == ['"I say, \\"hello.\\""']
-#>>> True
+print re.findall(regexp, '"I say, \\"hello.\\""') == ['"I say, \\"hello.\\""']
+# >>> True
 
 
 # regexp does not match:
 
-#print re.findall(regexp,'"\\"') != ['"\\"']
-#>>> True
-
+print re.findall(regexp, '"\\"') != ['"\\"']
+# >>> True
