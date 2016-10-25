@@ -2,9 +2,13 @@
 
 # Define edges and accepting to encode r"q*". Name your start state 1.
 
-edges = {}
+edges = {
+    (1, ''): 2,
+    (1, 'q'): 2,
+    (2, 'q'): 2,
+}
 
-accepting = []
+accepting = [1, 2]
 
 
 def fsmsim(string, current, edges, accepting):
