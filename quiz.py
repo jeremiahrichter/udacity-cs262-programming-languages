@@ -1,14 +1,10 @@
 # FSM Interpretation
 
-# Define edges and accepting to encode r"q*". Name your start state 1.
+# Define edges and accepting to encode r"[a-b][c-d]?". Name your start state 1.
 
-edges = {
-    (1, ''): 2,
-    (1, 'q'): 2,
-    (2, 'q'): 2,
-}
+edges = {}
 
-accepting = [1, 2]
+accepting = []
 
 
 def fsmsim(string, current, edges, accepting):
@@ -24,14 +20,14 @@ def fsmsim(string, current, edges, accepting):
             return False
 
 
-print fsmsim("", 1, edges, accepting)
+#print fsmsim("a",1,edges,accepting)
 # >>> True
 
-print fsmsim("q", 1, edges, accepting)
+#print fsmsim("b",1,edges,accepting)
 # >>> True
 
-print fsmsim("qq", 1, edges, accepting)
+#print fsmsim("ad",1,edges,accepting)
 # >>> True
 
-print fsmsim("p", 1, edges, accepting)
+#print fsmsim("e",1,edges,accepting)
 # >>> False
