@@ -1,27 +1,33 @@
-# Regexp Details and Challenges
+# RE Challenges
+
+# Assign to the variable regexp a Python regular expression that matches single-
+# argument mathematical functions.
+
+# The function name is a lowercase word (a-z), the function argument must be a
+# number (0-9), and there may optionally be spaces before and/or after the
+# argument.
+
+# Hint: You may need to escape the ( and ).
 
 import re
 
-# Assign to the variable regexp a Python regular expression that matches
-# lowercase words (a-z) or singly-hyphenated lowercase words.
-
-# Hint: It may not be possible to get correctly - do your best!
-
-regexp = r"[a-z]+-?[a-z]*"
+regexp = r""
 
 # regexp matches:
 
-print re.findall(regexp, "well-liked") == ["well-liked"]
+# print re.findall(regexp,"cos(0)") == ["cos(0)"]
 # >>> True
 
-print re.findall(regexp, "html") == ["html"]
+# print re.findall(regexp,"sqrt(   2     )") == ["sqrt(   2     )"]
 # >>> True
 
 
 # regexp does not match:
 
-print re.findall(regexp, "a-b-c") != ["a-b-c"]
+# print re.findall(regexp,"cos     (0)") != ["cos     (0)"]
 # >>> True
 
-print re.findall(regexp, "a--b") != ["a--b"]
+# print re.findall(regexp,"sqrt(x)") != ["sqrt(x)"]
 # >>> True
+
+
