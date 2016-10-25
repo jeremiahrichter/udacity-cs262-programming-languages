@@ -1,22 +1,23 @@
-# Tricky REs with ^ and \
+# FSM Simulation
 
-# Assign to regexp a regular expression for double-quoted string literals that
-# allows for escaped double quotes.
+edges = {(1, 'a') : 2,
+         (2, 'a') : 2,
+         (2, '1') : 3,
+         (3, '1') : 3}
 
-# Hint: Escape " and \
-# Hint: (?: (?: ) )
+accepting = [3]
 
-import re
+def fsmsim(string, current, edges, accepting):
+    if string == "":
+        return current in accepting
+    else:
+        letter = string[0]
+        # QUIZ: You fill this out!
+        # Is there a valid edge?
+        # If so, take it.
+        # If not, return False.
+        # Hint: recursion.
 
-regexp = r'^\"(?:[^\\]|(?:\\.))*\"$'
 
-# regexp matches:
-
-print re.findall(regexp, '"I say, \\"hello.\\""') == ['"I say, \\"hello.\\""']
-# >>> True
-
-
-# regexp does not match:
-
-print re.findall(regexp, '"\\"') != ['"\\"']
+#print fsmsim("aaa111",1,edges,accepting)
 # >>> True
