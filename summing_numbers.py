@@ -15,11 +15,13 @@ import re
 
 
 def sumnums(sentence):
-
-
-# write your code here
-
-
+    total = 0
+    regex = r'[0-9]+'
+    numbers = [int(num) for num in re.findall(regex, sentence)]
+    if len(numbers) > 0:
+        for num in numbers:
+            total += num
+    return total
 
 # This problem includes an example test case to help you tell if you are on
 # the right track. You may want to make your own additional tests as well.
