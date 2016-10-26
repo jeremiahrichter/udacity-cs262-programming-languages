@@ -32,7 +32,6 @@ edges2 = {(1, 'a'): [1],
           (2, 'a'): [2]}
 accepting2 = [2]
 
-
 # ... accepts no strings (if you look closely, you'll see that you cannot
 # actually reach state 2 when starting in state 1).
 
@@ -53,9 +52,31 @@ accepting2 = [2]
 # those relevant to your current state. "for edge in edges" will iterate
 # over all of the keys in the mapping (i.e., over all of the (state,letter)
 # pairs) -- you'll have to write "edges[edge]" to get the destination list.
+import itertools
+
 
 def nfsmaccepts(current, edges, accepting, visited):
-    pass
+    if current in accepting:
+        return ""
+    elif current in visited:
+        return None
+    else:
+        visited += [current]
+        pairs = [(edge[1], edges[edge])
+                 for edge in edges
+                 if edge[0] == current]
+        letter_states = [(letter, filter(lambda x: x not in visited, states))
+                         for letter, states in pairs]
+        if letter_states:
+            for letter_state in letter_states:
+                letter = letter_state[0]
+                states = [state for state in letter_state[1]]
+                for state in states:
+                    other_letters = nfsmaccepts(state, edges, accepting, visited)
+                    if other_letters is not None:
+                        return letter + other_letters
+                return None
+
 
 # write your code here
 
