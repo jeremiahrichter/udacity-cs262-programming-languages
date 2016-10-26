@@ -33,12 +33,28 @@ edges = {(1, 'a'): [2, 3],
          (4, 'c'): [5]}
 accepting = [2, 5]
 
-
 # It accepts both "aaa" (visiting states 1 2 2 and finally 2) and "abbc"
 # (visting states 1 3 3 4 and finally 5).
 
 def nfsmsim(string, current, edges, accepting):
-    pass
+    to_transverse = []
+    to_transverse += [(current, string)]
+    to_query = ''
+    state = 0
+    while len(to_transverse) > 0:
+        state, to_query = to_transverse.pop()
+        if to_query == '':
+            if state not in accepting:
+                continue
+            else:
+                return True
+        edge = (state, to_query[0])
+        if edge in edges:
+            new_states = edges[edge]
+            to_transverse += [(new_state, to_query[1:]) for new_state in new_states]
+        else:
+            continue
+    return False
 
 
 
